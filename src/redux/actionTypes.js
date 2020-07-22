@@ -1,0 +1,5 @@
+export const SET_VISIT_NUMBER = 'set_visit_number'
+export const SET_MESSAGE_NUMBER = 'set_message_number'
+export const SET_DOCUMENT_NUMBER = 'set_document_number'
+export const SET_GROUP_NUMBER = 'set_group_number'
+export const SET_TAB_KEY = 'set_tab_key'

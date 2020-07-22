@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import './index.less'
 import {Card, Table } from 'antd'
 import ReactEcharts from 'echarts-for-react'
+
+import { connect } from 'react-redux'
+
 const dataSource = [
   {
     key: '1',
@@ -57,16 +60,13 @@ const columns = [
     key: 'number',
   }
 ];
-export default class Tabcontent extends Component {
+class Tabcontent extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      dataSource: []
-    }
+  state = { 
+    xiaoliang: [5, 20, 36, 100, 10, 20]
   }
   
-  getOption= () => {
+  getOption= (xiaoliang) => {
     return {
       title: {
           text: ''
@@ -88,7 +88,7 @@ export default class Tabcontent extends Component {
       series: [{
           name: '销量',
           type: 'bar',
-          data: [5, 20, 36, 100, 10, 20],
+          data: xiaoliang,
           backgroundStyle: {
               color: 'rgba(220, 220, 220, 0.8)'
           }
@@ -97,6 +97,9 @@ export default class Tabcontent extends Component {
   }
 
   render() {
+    const { xiaoliang } = this.state
+    // const key = this.props.tabKey
+    console.log('tabKey', this.props.tabKey)
     return(
       <div className="tab-content">
         <Card className="card-header">
@@ -109,7 +112,7 @@ export default class Tabcontent extends Component {
         <Card title='柱状图' className="card-echarts">
           <div className="card-content">
             <div className="content-left">
-              <ReactEcharts option={this.getOption()} className="echarts"/>
+              <ReactEcharts option={this.getOption(xiaoliang)} className="echarts"/>
             </div>
             <div className="content-right">
               <h1>排行</h1>
@@ -125,3 +128,7 @@ export default class Tabcontent extends Component {
     )
   }
 }
+
+export default connect(
+  state => ({tabKey: state.tabKey}),{}
+)(Tabcontent)

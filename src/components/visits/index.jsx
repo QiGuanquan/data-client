@@ -3,12 +3,16 @@ import { Tabs } from 'antd'
 import './index.less'
 import Tabcontent from '../tabcontent'
 
+import { connect } from 'react-redux'
+import { setTabKey } from '../../redux/actionCreators'
+
 const { TabPane } = Tabs
 
-export default class Visits extends Component {
+class Visits extends Component {
 
   callback= (key) => {
     console.log(key)
+    this.props.setTabKey(key)
   }
 
     render() {
@@ -30,3 +34,7 @@ export default class Visits extends Component {
       )
     }
 }
+
+export default connect(
+  state => ({setTabKey}),{}
+)(Visits)
