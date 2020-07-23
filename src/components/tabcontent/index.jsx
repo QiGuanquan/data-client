@@ -37,13 +37,23 @@ const dataSource = [
     number: 42
   },
   {
-    key: '7',
+    key: '6',
     name: '七室',
     number: 42
   },
   {
-    key: '8',
+    key: '6',
     name: '八室',
+    number: 42
+  },
+  {
+    key: '6',
+    name: '九室',
+    number: 42
+  },
+  {
+    key: '6',
+    name: '十室',
     number: 42
   }
 ];
@@ -60,13 +70,22 @@ const columns = [
     key: 'number',
   }
 ];
-class Tabcontent extends Component {
 
-  state = { 
-    xiaoliang: [5, 20, 36, 100, 10, 20]
-  }
+class Tabcontent extends Component {
   
-  getOption= (xiaoliang) => {
+  constructor(props) {
+    super(props)
+    this.state = {}
+    dataSource.forEach((item, index) => {
+      item.number = this.props.data[index]
+    })
+    setInterval(() => {
+      
+    }, 1000);
+  }
+
+
+  getOption= (a) => {
     return {
       title: {
           text: ''
@@ -76,19 +95,19 @@ class Tabcontent extends Component {
           data:['访问量']
       },
       xAxis: {
-          data: ["一室","二室","三室","四室","五室","六室"]
+          data: ["一室","二室","三室","四室","五室","六室","七室","八室","九室","十室"]
       },
       yAxis: {
         type: 'value'
       },
       grid: {
         top: '8px',
-        left: '32px'
+        left: '40px'
       },
       series: [{
           name: '销量',
           type: 'bar',
-          data: xiaoliang,
+          data: a,
           backgroundStyle: {
               color: 'rgba(220, 220, 220, 0.8)'
           }
@@ -97,9 +116,7 @@ class Tabcontent extends Component {
   }
 
   render() {
-    const { xiaoliang } = this.state
-    // const key = this.props.tabKey
-    console.log('tabKey', this.props.tabKey)
+    const a = this.props.data
     return(
       <div className="tab-content">
         <Card className="card-header">
@@ -112,7 +129,7 @@ class Tabcontent extends Component {
         <Card title='柱状图' className="card-echarts">
           <div className="card-content">
             <div className="content-left">
-              <ReactEcharts option={this.getOption(xiaoliang)} className="echarts"/>
+              <ReactEcharts option={this.getOption(a)} className="echarts" style={{ height: '100%' }}/>
             </div>
             <div className="content-right">
               <h1>排行</h1>
@@ -130,5 +147,6 @@ class Tabcontent extends Component {
 }
 
 export default connect(
-  state => ({tabKey: state.tabKey}),{}
+  state => ({tabKey: state.tabKey
+    }),{}
 )(Tabcontent)

@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 import { SET_VISIT_NUMBER, SET_MESSAGE_NUMBER, SET_DOCUMENT_NUMBER, SET_GROUP_NUMBER, SET_TAB_KEY } from './actionTypes'
 
-const innitVisitNumber = [1,2,3,4]
-const innitMessageNumber = [10,20,30,40]
-const innitDocumentNumber = [100,200,300,400]
-const innitGroupNumber = [1000,2000,3000,4000]
+const innitVisitNumber = [18,22,63,14,35,76,57,98,99,30]
+const innitMessageNumber = [18,22,63,14,35,76,57,98,99,30]
+const innitDocumentNumber = [18,22,63,14,35,76,57,98,99,30]
+const innitGroupNumber = [18,22,63,14,35,76,57,98,99,30]
 const innitTabKey = 1
 function visitNumber(state=innitVisitNumber, action) {
   switch (action.type) {
