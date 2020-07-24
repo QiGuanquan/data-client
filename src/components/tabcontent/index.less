@@ -4,16 +4,26 @@
   .card-header {
     border-top: none;
 
-    .card-head {
-      width: 100%;
-      height: 32px;
+    .flex {
       display: flex;
       align-items: center;
 
-      a {
-        margin-right: 16px;
-      }
-    }    
+      .card-head {
+        width: 95%;
+        height: 32px;
+        display: flex;
+        align-items: center;
+
+        a {
+          margin-right: 16px;
+        }
+      } 
+
+      .companyName {
+        font-size: large;
+        font-weight: bold;
+      }  
+    } 
   }
 
     .card-echarts {
@@ -47,6 +57,9 @@
       
       .content-right {
         width: 50%;
+        h1 {
+          font-size: 20px;
+        }
       }
 
     }

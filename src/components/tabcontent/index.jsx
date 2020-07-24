@@ -8,80 +8,65 @@ import { connect } from 'react-redux'
 const dataSource = [
   {
     key: '1',
-    name: '一室',
+    name: '二部',
     number: 32
   },
   {
     key: '2',
-    name: '二室',
+    name: '二十三所',
     number: 42
   },
   {
     key: '3',
-    name: '三室',
+    name: '二十五所',
     number: 42
   },
   {
     key: '4',
-    name: '四室',
+    name: '二零一所',
     number: 42
   },
   {
     key: '5',
-    name: '五室',
+    name: '二零三所',
     number: 42
   },
   {
     key: '6',
-    name: '六室',
+    name: '二零八所',
     number: 42
   },
   {
     key: '6',
-    name: '七室',
+    name: '七零六所',
     number: 42
   },
   {
     key: '6',
-    name: '八室',
+    name: '物资部',
     number: 42
   },
   {
     key: '6',
-    name: '九室',
+    name: '二八三厂',
     number: 42
   },
   {
     key: '6',
-    name: '十室',
+    name: '六九九厂',
     number: 42
   }
 ];
 
-const columns = [
-  {
-    title: '姓名',
-    dataIndex: 'name',
-    key: 'name',
-  },
-  {
-    title: '数量',
-    dataIndex: 'number',
-    key: 'number',
-  }
-];
 
 class Tabcontent extends Component {
   
   constructor(props) {
     super(props)
     this.state = {}
-    dataSource.forEach((item, index) => {
-      item.number = this.props.data[index]
-    })
-    setInterval(() => {
-      
-    }, 1000);
+    // dataSource.forEach((item, index) => {
+    //   item.number = this.props.data[index]
+    // })
   }
 
 
@@ -95,14 +80,15 @@ class Tabcontent extends Component {
           data:['访问量']
       },
       xAxis: {
-          data: ["一室","二室","三室","四室","五室","六室","七室","八室","九室","十室"]
+          data: ["二部","二十三所","二十五所","二零一所","二零三所","二零八所","七零六所","物资部","二八三厂","六九九厂"]
       },
       yAxis: {
         type: 'value'
       },
       grid: {
         top: '8px',
-        left: '40px'
+        left: '40px',
+        // bottom: '80px'
       },
       series: [{
           name: '销量',
@@ -116,20 +102,45 @@ class Tabcontent extends Component {
   }
 
   render() {
+    // const abc = []
+    // abc.push(parseInt(Math.random()*(11)+50,10),1,2,2,2,2)
+    // console.log('随机数', abc)
+    dataSource.forEach((item, index) => {
+      item.number = this.props.data[index]
+    })
+    const columns = [
+      {
+        title: '单位名',
+        dataIndex: 'name',
+        key: 'name',
+      },
+      {
+        title: '数量',
+        dataIndex: 'number',
+        key: 'number',
+        // sortOrder: 'descend',
+        // sorter: (a, b) => a.number - b.number,
+      }
+    ];
     const a = this.props.data
     return(
       <div className="tab-content">
         <Card className="card-header">
-          <div className="card-head">
-            <a href="#self">今日</a>
-            <a href="#self">本周</a>
-            <a href="#self">本月</a>
+          <div className="flex">
+            <div className="card-head">
+              <a href="#self">今日</a>
+              <a href="#self">本周</a>
+              <a href="#self">本月</a>
+            </div>
+            <div className="companyName">
+              二院单位
+            </div>
           </div>
         </Card>
         <Card title='柱状图' className="card-echarts">
           <div className="card-content">
             <div className="content-left">
-              <ReactEcharts option={this.getOption(a)} className="echarts" style={{ height: '100%' }}/>
+              <ReactEcharts option={this.getOption(a)} className="echarts" style={{width: '100%', height: '100%' }} id="myEcharts"/>
             </div>
             <div className="content-right">
               <h1>排行</h1>
